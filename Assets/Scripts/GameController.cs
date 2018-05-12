@@ -24,6 +24,9 @@ public class GameController : MonoBehaviour {
     private Text pointsText;
 
     [SerializeField]
+    private Text finalPointsText;
+
+    [SerializeField]
     private GameObject gameStartPanel;
 
     [SerializeField]
@@ -85,6 +88,7 @@ public class GameController : MonoBehaviour {
             }
             else if(nextState == GameState.GAMEOVER)
             {
+                finalPointsText.text = string.Format("Final Score: {0}", Points);
                 player.SetActive(false);
                 gameEndPanel.SetActive(true);
             }

@@ -54,6 +54,7 @@ MonoBehaviour:
   player: {fileID: 0}
   bulletPool: {fileID: 0}
   pointsText: {fileID: 0}
+  finalPointsText: {fileID: 0}
   gameStartPanel: {fileID: 0}
   gameEndPanel: {fileID: 0}
   spawnTimeDelay: 1
