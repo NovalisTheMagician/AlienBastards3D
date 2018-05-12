@@ -73,10 +73,7 @@ public class GameController : MonoBehaviour {
         {
             if(nextState == GameState.PLAY)
             {
-                foreach(GameObject enemy in enemies)
-                    Destroy(enemy);
-
-                enemies.Clear();
+                ClearEnemies();
 
                 gameStartPanel.SetActive(false);
                 gameEndPanel.SetActive(false);
@@ -88,6 +85,7 @@ public class GameController : MonoBehaviour {
             }
             else if(nextState == GameState.GAMEOVER)
             {
+                ClearEnemies();
                 finalPointsText.text = string.Format("Final Score: {0}", Points);
                 player.SetActive(false);
                 gameEndPanel.SetActive(true);
@@ -126,6 +124,16 @@ public class GameController : MonoBehaviour {
         }
 	}
 
+    private void ClearEnemies()
+    {
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
+
+        enemies.Clear();
+    }
+
     public void OnEnemyKill(GameObject enemy)
     {
         Points += 10;
@@ -156,6 +164,8 @@ public class GameController : MonoBehaviour {
 
         enemy.GetComponent<Enemy>().OnDeath += OnEnemyKill;
         enemy.GetComponent<Enemy>().OnDespawn += OnEnemyDespawn;
+
+        enemies.Add(enemy);
     }
 
     private void UpdatePointsLabel()
